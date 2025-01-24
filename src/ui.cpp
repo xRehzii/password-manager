@@ -6,8 +6,9 @@ void displayMenu() {
     std::cout << "Password Manager Menu:\n";
     std::cout << "1. Generate a new password\n";
     std::cout << "2. Store an existing password\n";
-    std::cout << "3. Retrieve a stored password\n";
-    std::cout << "4. Exit\n";
+    std::cout << "3. List stored passwords\n";
+    std::cout << "4. Retrieve a stored password\n";
+    std::cout << "5. Exit\n";
     std::cout << "Enter your choice: ";
 }
 
@@ -62,3 +63,15 @@ void retrievePassword(PasswordManager &manager) {
     }
 }
 
+void listStoredPasswords(PasswordManager &manager) {
+    std::map<std::string, std::string> storedPasswords = manager.listPasswords();
+    if (storedPasswords.empty()) {
+        std::cout << "No passwords stored.\n";
+        return;
+    } else {
+        std::cout << "Stored passwords:\n";
+        for (const auto &entry : storedPasswords) {
+        std::cout << "Service: " << entry.first << ", Username: " << entry.second << "\n";
+        }
+    }
+}

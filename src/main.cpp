@@ -18,22 +18,6 @@ int main() {
 
     PasswordManager manager(storageFile, keyFile);
 
-    try {
-        std::string service = "Google";
-        std::string username = "johnSmith@gmail.com";
-        std::string password = generatePassword(16, true, true);
-
-        std::cout << "Generated password:" << password << std::endl;
-        manager.savePassword(service, username, password);
-        std::cout << "Password for " << service << " saved successfully." << std::endl;
-
-        std::string retrievedPassword = manager.getPassword(service);
-        std::cout << "Retrieved password for " << service << " is:" << retrievedPassword << std::endl;
-    } catch (const std::exception &e) {
-        std::cerr << "Password manager failed: " << e.what() << std::endl;
-        return 1;
-    }
-
     while (true) {
         displayMenu();
         int choice;
@@ -47,9 +31,12 @@ int main() {
                 saveExistingPassword(manager);
                 break;
             case 3:
-                retrievePassword(manager);
+                listStoredPasswords(manager);
                 break;
             case 4:
+                retrievePassword(manager);
+                break;
+            case 5:
                 std::cout << "Exiting...\n";
                 return 0;
             default:
