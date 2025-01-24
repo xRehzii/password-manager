@@ -59,6 +59,8 @@ std::string encryptData(const std::string &data, const std::string &keyFile) {
 
     EVP_CIPHER_CTX_free(context);
 
+    encryptedData.resize(encryptBytes + finalBytes);
+
     return std::string(reinterpret_cast<char*>(initializationVector), ivSize) + encryptedData;
 }
 
@@ -66,7 +68,6 @@ std::string decryptData(const std::string &encryptedData, const std::string &key
     auto key = loadKey(keyFile);
 
     unsigned char initializationVector[ivSize];
-
     std::copy(encryptedData.begin(), encryptedData.begin() + ivSize, initializationVector);
 
     EVP_CIPHER_CTX *context = EVP_CIPHER_CTX_new();
@@ -84,6 +85,6 @@ std::string decryptData(const std::string &encryptedData, const std::string &key
     EVP_CIPHER_CTX_free(context);
 
     decryptedData.resize(decryptBytes + finalBytes);
-    
+
     return decryptedData;
 }

@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude
 
 # Source and Object Files
-SRC = src/passwordGenerator.cpp src/passwordManager.cpp src/encryption.cpp src/main.cpp
+SRC = src/passwordGenerator.cpp src/passwordManager.cpp src/encryption.cpp src/main.cpp src/ui.cpp
 OBJ_DIR = build
 OBJ = $(SRC:src/%.cpp=$(OBJ_DIR)/%.o)
 

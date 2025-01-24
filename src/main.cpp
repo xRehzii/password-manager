@@ -1,6 +1,7 @@
 #include "passwordGenerator.h"
 #include "passwordManager.h"
 #include "encryption.h"
+#include "ui.h"
 #include <iostream>
 
 int main() {
@@ -32,5 +33,29 @@ int main() {
         std::cerr << "Password manager failed: " << e.what() << std::endl;
         return 1;
     }
+
+    while (true) {
+        displayMenu();
+        int choice;
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1:
+                generateAndSavePassword(manager);
+                break;
+            case 2:
+                saveExistingPassword(manager);
+                break;
+            case 3:
+                retrievePassword(manager);
+                break;
+            case 4:
+                std::cout << "Exiting...\n";
+                return 0;
+            default:
+                std::cout << "Invalid choice. Please try again.\n";
+        }
+    }
+
     return 0;
 }
