@@ -8,7 +8,8 @@ void displayMenu() {
     std::cout << "2. Store an existing password\n";
     std::cout << "3. List stored passwords\n";
     std::cout << "4. Retrieve a stored password\n";
-    std::cout << "5. Exit\n";
+    std::cout << "5. Delete a stored password\n";
+    std::cout << "6. Exit\n";
     std::cout << "Enter your choice: ";
 }
 
@@ -50,6 +51,11 @@ void saveExistingPassword(PasswordManager &manager) {
 }
 
 void retrievePassword(PasswordManager &manager) {
+    std::map<std::string, std::string> storedPasswords = manager.listPasswords();
+    if (storedPasswords.empty()) {
+        std::cout << "No passwords in list.\n";
+        return;
+    }
     std::string service;
 
     std::cout << "Enter service name: ";
@@ -73,5 +79,25 @@ void listStoredPasswords(PasswordManager &manager) {
         for (const auto &entry : storedPasswords) {
         std::cout << "Service: " << entry.first << ", Username: " << entry.second << "\n";
         }
+    }
+}
+
+void deleteStoredPassword(PasswordManager &manager) {
+    std::map<std::string, std::string> storedPasswords = manager.listPasswords();
+    if (storedPasswords.empty()) {
+        std::cout << "No passwords to delete.\n";
+        return;
+    }
+
+    std::string service;
+
+    std::cout << "Enter service name to delete: ";
+    std::cin >> service;
+
+    try {
+        manager.deletePassword(service);
+        std::cout << "Password for " << service << " deleted successfully.\n";
+    } catch (const std::exception &e) {
+        std::cerr << "Error: " << e.what() << "\n";
     }
 }

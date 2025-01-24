@@ -37,6 +37,9 @@ int main() {
                 retrievePassword(manager);
                 break;
             case 5:
+                deleteStoredPassword(manager);
+                break;
+            case 6:
                 std::cout << "Exiting...\n";
                 return 0;
             default:
