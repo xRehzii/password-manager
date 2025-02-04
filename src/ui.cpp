@@ -18,7 +18,7 @@ void generateAndSavePassword(PasswordManager &manager) {
     int length;
     bool useSymbols, useNumbers;
 
-    std::cout << "Enter service name: ";
+    std::cout << "\nEnter service name: ";
     std::cin >> service;
     std::cout << "Enter username: ";
     std::cin >> username;
@@ -39,7 +39,7 @@ void generateAndSavePassword(PasswordManager &manager) {
 void saveExistingPassword(PasswordManager &manager) {
     std::string service, username, password;
 
-    std::cout << "Enter service name: ";
+    std::cout << "\nEnter service name: ";
     std::cin >> service;
     std::cout << "Enter username: ";
     std::cin >> username;
@@ -53,12 +53,12 @@ void saveExistingPassword(PasswordManager &manager) {
 void retrievePassword(PasswordManager &manager) {
     std::map<std::string, std::string> storedPasswords = manager.listPasswords();
     if (storedPasswords.empty()) {
-        std::cout << "No passwords in list.\n";
+        std::cout << "\nNo passwords in list.\n";
         return;
     }
     std::string service;
 
-    std::cout << "Enter service name: ";
+    std::cout << "\nEnter service name: ";
     std::cin >> service;
 
     try {
@@ -72,10 +72,10 @@ void retrievePassword(PasswordManager &manager) {
 void listStoredPasswords(PasswordManager &manager) {
     std::map<std::string, std::string> storedPasswords = manager.listPasswords();
     if (storedPasswords.empty()) {
-        std::cout << "No passwords stored.\n";
+        std::cout << "\nNo passwords stored.\n";
         return;
     } else {
-        std::cout << "Stored passwords:\n";
+        std::cout << "\nStored passwords:\n";
         for (const auto &entry : storedPasswords) {
         std::cout << "Service: " << entry.first << ", Username: " << entry.second << "\n";
         }
@@ -85,13 +85,13 @@ void listStoredPasswords(PasswordManager &manager) {
 void deleteStoredPassword(PasswordManager &manager) {
     std::map<std::string, std::string> storedPasswords = manager.listPasswords();
     if (storedPasswords.empty()) {
-        std::cout << "No passwords to delete.\n";
+        std::cout << "\nNo passwords to delete.\n";
         return;
     }
 
     std::string service;
 
-    std::cout << "Enter service name to delete: ";
+    std::cout << "\nEnter service name to delete: ";
     std::cin >> service;
 
     try {
